@@ -1,0 +1,9 @@
+{
+    "manifest_version": 3,
+    "name": "Grade Calculator",
+    "version": "1.0.0",
+    "description": "Como 'Cuanto necesito para el final' pero en extension",
+    "action": {
+        "default_popup": "index.html"
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "language_button": "Idioma",
+    "language_button_placeholder": "Nota Minima Para Pasar",
+    "greeting": "Calculadora de Notas",
+    "grades_desc": "Notas - Pesos",
+    "input_grade_placeholder": "Ej 3",
+    "input_weight_placeholder": "Ej 20",
+    "delete_button": "Eliminar",
+    "add_button": "Agregar Nota",
+    "calculate_button": "Calcular",
+    "current_grade": "Nota Actual",
+    "current_weight": "Porcentaje Calificado",
+    "remaining": "Porcentaje Por Calificar",
+    "to_pass": "Nota Para Pasar",
+    "error_weight": "El peso total debe ser mayor a 0% y no exceder el 100%",
+    "app_name": "Calculadora de Notas",
+    "goal_label": "Nota Objetivo",
+    "evaluations_title": "Evaluaciones",
+    "results_title": "Resultados",
+    "close_button": "Cerrar"
+}

@@ -1,0 +1,21 @@
+{
+    "language_button": "Language",
+    "language_button_placeholder": "Minimum Grade To Pass",
+    "greeting": "Grade Calculator",
+    "grades_desc": "Grades - Weights",
+    "input_grade_placeholder": "e.g. 3",
+    "input_weight_placeholder": "e.g. 20",
+    "delete_button": "Delete",
+    "add_button": "Add Grade",
+    "calculate_button": "Calculate",
+    "current_grade": "Current Grade",
+    "current_weight": "Current Weight",
+    "remaining": "Remaining Weight",
+    "to_pass": "Grade To Pass",
+    "error_weight": "The total must be greater than 0% and can not exceed 100%",
+    "app_name": "Grade Calculator",
+    "goal_label": "Target grade",
+    "evaluations_title": "Evaluations",
+    "results_title": "Results",
+    "close_button": "Close"
+}
