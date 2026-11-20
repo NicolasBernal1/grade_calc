@@ -1,35 +1,50 @@
-# React + TypeScript + Vite
+# Calculadora De Notas
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Extensión de Chrome que permite calcular la nota necesaria para aprobar una asignatura a partir de las calificaciones y porcentajes de las evaluaciones realizadas.
 
-Currently, two official plugins are available:
+## Características
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Registrar calificaciones y sus respectivos porcentajes.
+- Agregar y eliminar evaluaciones.
+- Establecer una nota objetivo para aprobar.
+- Calcular la nota necesaria en las evaluaciones restantes.
+- Guardar automáticamente las evaluaciones utilizando Chrome Storage.
+- Interfaz disponible en inglés y español.
 
-## React Compiler
+## Tecnologías
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- React
+- TypeScript
+- CSS
+- Chrome Extension API (Manifest V3)
+- ChatGPT (Hizo el css, no me gusta css)
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
+## Instalación
 
-## Expanding the Oxlint configuration
+1. Clonar el repositorio.
+2. Instalar las dependencias:
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+   ```bash
+   npm install
+   ```
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+3. Construir el proyecto:
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+   ```bash
+   npm run build
+   ```
+
+4. Abrir `chrome://extensions/` en Google Chrome.
+5. Activar el **Modo de desarrollador**.
+6. Seleccionar **Cargar extensión sin empaquetar**.
+7. Seleccionar la carpeta generada por el proceso de construcción (normalmente `dist`).
+
+## Uso
+
+1. Establecer la nota objetivo.
+2. Ingresar las calificaciones obtenidas y sus respectivos porcentajes.
+3. Agregar o eliminar evaluaciones según sea necesario.
+4. Presionar el botón de calcular.
+5. Consultar la nota necesaria para alcanzar el objetivo.
+
+Las evaluaciones se guardan automáticamente en el almacenamiento local de Chrome.
