@@ -1,15 +1,22 @@
 
-import { useState } from 'react';
+import { useEffect, useState, type ChangeEvent } from 'react';
 import './App.css';
 import en from './assets/en.json';
 import es from './assets/es.json';
 
 function App() {
+  interface Grade {
+    grade: string;
+    weight: string;
+  }
   const [language, setLanguage] = useState('en');
   let lang = language == "en" ? en : es;
 
   const [goal, setGoal] = useState(3.0);
-  const [inputFields, setInputFields] = useState([{ grade: "", weight: "" }]);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [inputFields, setInputFields] = useState<Grade[]>([
+    { grade: "", weight: "" }
+  ]);
   const [result, setResult] = useState({
     currentGrade: 0,
     currentWeight: 0,
@@ -17,14 +24,45 @@ function App() {
     toPass: 0
   });
 
+  useEffect(() => {
+    async function load_data() {
+      const savedData = await local_load();
+
+      if (savedData) {
+        setInputFields(savedData);
+      }
+
+      setIsLoaded(true);
+    }
+
+    load_data();
+  }, []);
+
+  useEffect(() => {
+    if (isLoaded) {
+      local_save();
+    }
+  }, [inputFields, isLoaded]);
+
+  async function local_save() {
+    await chrome.storage.local.set({ data: inputFields });
+  }
+
+  async function local_load(): Promise<Grade[] | undefined> {
+    const data = await chrome.storage.local.get(["data"]);
+    return data.data as Grade[] | undefined;
+  }
+
+
   const [error, setError] = useState("");
 
   function change_language() {
     setLanguage(language === 'en' ? 'es' : 'en');
   }
 
-  function handleValueChange(index: number, event) {
-    const { name, value } = event.target;
+  function handleValueChange(index: number, event: ChangeEvent<HTMLInputElement>) {
+    const { value } = event.target;
+    const name = event.target.name as keyof Grade;
 
     const values = [...inputFields];
 
@@ -83,6 +121,8 @@ function App() {
 
     let toPass = ((goal * 100 - currentGrade * currentWeight) / remaining);
 
+    console.log(validFields);
+
     setResult({
       currentGrade,
       currentWeight,
@@ -110,7 +150,6 @@ function App() {
 
       <section className="intro">
         <h1>{lang.greeting}</h1>
-        <p>{lang.grades_desc}</p>
       </section>
 
       <section className="goal-card">
@@ -126,7 +165,6 @@ function App() {
             step='0.1'
             onChange={(e) => setGoal(Number(e.target.value))}
           />
-          <span>/ 5.0</span>
         </div>
       </section>
 

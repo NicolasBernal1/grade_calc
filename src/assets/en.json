@@ -2,7 +2,6 @@
     "language_button": "Language",
     "language_button_placeholder": "Minimum Grade To Pass",
     "greeting": "Grade Calculator",
-    "grades_desc": "Grades - Weights",
     "input_grade_placeholder": "e.g. 3",
     "input_weight_placeholder": "e.g. 20",
     "delete_button": "Delete",
