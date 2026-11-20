@@ -9,7 +9,7 @@ function App() {
     grade: string;
     weight: string;
   }
-  const [language, setLanguage] = useState('en');
+  const [language, setLanguage] = useState<string>('en');
   let lang = language == "en" ? en : es;
 
   const [goal, setGoal] = useState(3.0);
@@ -27,9 +27,14 @@ function App() {
   useEffect(() => {
     async function load_data() {
       const savedData = await local_load();
+      const savedLang = await lang_load();
 
       if (savedData) {
         setInputFields(savedData);
+      }
+
+      if (savedLang === 'en' || savedLang === 'es') {
+        setLanguage(savedLang);
       }
 
       setIsLoaded(true);
@@ -42,15 +47,20 @@ function App() {
     if (isLoaded) {
       local_save();
     }
-  }, [inputFields, isLoaded]);
+  }, [inputFields, isLoaded, language]);
 
   async function local_save() {
-    await chrome.storage.local.set({ data: inputFields });
+    await chrome.storage.local.set({ data: inputFields, lang: language });
   }
 
   async function local_load(): Promise<Grade[] | undefined> {
     const data = await chrome.storage.local.get(["data"]);
     return data.data as Grade[] | undefined;
+  }
+
+  async function lang_load(): Promise<string | undefined> {
+    const savedLang = await chrome.storage.local.get(["lang"]);
+    return savedLang.lang as string | undefined;
   }
 
 
